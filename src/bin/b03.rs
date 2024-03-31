@@ -1,39 +1,21 @@
-#[allow(unused_imports)]
-use itertools::{iproduct, Itertools};
-#[allow(unused_imports)]
-use num_traits::pow;
-#[allow(unused_imports)]
-use proconio::{
-    fastout, input,
-    marker::{Chars, Usize1},
-};
-#[allow(unused_imports)]
-use std::cmp::{max, min};
-#[allow(unused_imports)]
-use std::collections::{HashMap, HashSet, VecDeque};
-#[allow(unused_imports)]
-use std::iter::FromIterator;
-use std::process::exit;
+use proconio::{fastout, input};
 
+#[allow(non_snake_case)]
 #[fastout]
 fn main() {
     input! {
         n: usize,
-        a: [usize; n],
+        mut a: [usize; n]
     }
-    let mut ans = false;
-    for i in 0..n {
-        for j in i + 1..n {
+    for i in 0..n - 2 {
+        for j in i + 1..n - 1 {
             for k in j + 1..n {
                 if a[i] + a[j] + a[k] == 1000 {
-                    ans = true;
+                    println!("Yes");
+                    return;
                 }
             }
         }
     }
-    if ans {
-        println!("Yes");
-    } else {
-        println!("No");
-    }
+    println!("No");
 }

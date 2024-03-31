@@ -19,16 +19,12 @@ fn main() {
     input! {
         a: usize, b: usize,
     }
-    let mut ans = 0;
+
     for i in a..=b {
         if 100 % i == 0 {
-            ans += 1;
-            break;
+            println!("Yes");
+            return;
         }
     }
-    if ans == 1 {
-        println!("Yes");
-    } else {
-        println!("No");
-    }
+    println!("No");
 }
