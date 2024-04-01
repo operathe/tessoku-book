@@ -16,22 +16,17 @@ fn main() {
         q: usize,
         lr: [(usize, usize); q]
     }
-
-    // 累積和を計算
+    //累積和で解く
     let mut sum = vec![0; n + 1];
     for i in 0..n {
         sum[i + 1] = sum[i] + if a[i] == 1 { 1 } else { -1 };
     }
-
-    // クエリを処理
     for (l, r) in lr {
         let count = sum[r] - sum[l - 1];
-        if count < 0 {
-            println!("lose");
-        } else if count > 0 {
-            println!("win");
-        } else {
-            println!("draw");
+        match count.cmp(&0) {
+            std::cmp::Ordering::Less => println!("lose"),
+            std::cmp::Ordering::Greater => println!("win"),
+            std::cmp::Ordering::Equal => println!("draw"),
         }
     }
 }
