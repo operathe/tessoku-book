@@ -16,9 +16,18 @@ use std::iter::FromIterator;
 
 #[fastout]
 fn main() {
-    input!{
-        h: usize, w: usize,
-        s: [Chars; h],
-        mut plan: [(usize, usize, usize); h]
+    input! {
+        t: usize, n: usize,
+        lr: [(usize, usize); n],
+    }
+    let mut s = vec![0; t + 1];
+    for &(l, r) in &lr {
+        s[l] += 1;
+        s[r] -= 1;
+    }
+    let mut ans = 0;
+    for i in &s[..t] {
+        ans += i;
+        println!("{}", ans);
     }
 }
